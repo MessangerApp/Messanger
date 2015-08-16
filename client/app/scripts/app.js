@@ -16,7 +16,8 @@ var app = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ng-token-auth'
   ])
 
   app.config(function ($routeProvider) {
@@ -25,6 +26,10 @@ var app = angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/sign_in', {
+        templateUrl: 'views/user_sessions/new.html',
+        controller: 'UserSessionsCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
