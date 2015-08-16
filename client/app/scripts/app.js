@@ -40,3 +40,9 @@ var app = angular
         redirectTo: '/'
       });
   });
+
+  app.run(['$rootScope', '$location', function($rootScope, $location) {
+  $rootScope.$on('auth:login-success', function() {
+    $location.path('/');
+  });
+}]);
