@@ -27,6 +27,10 @@ var app = angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/sign_up', {
+        templateUrl: 'views/user_registrations/new.html',
+        controller: 'UserRegistrationsCtrl',
+      })
       .when('/sign_in', {
         templateUrl: 'views/user_sessions/new.html',
         controller: 'UserSessionsCtrl'

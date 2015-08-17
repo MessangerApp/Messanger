@@ -43,6 +43,7 @@
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>
               <li ng-hide="user.id"><a ng-href="#/sign_in">Sign in</a></li>
+              <li ng-hide="user.id"><a ng-href="#/sign_up">Sign up</a></li>
               <li ng-show="user.id"><a ng-click="signOut()">Sign out</a></li>
             </ul>
           </div>
@@ -83,6 +84,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/user_sessions.js"></script>
+        <script src="scripts/controllers/user_registrations.js"></script>
         <!-- endbuild -->
 </body>
 </html>

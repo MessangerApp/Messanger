@@ -7,4 +7,8 @@ class LoginPage
     find('button', text: 'Sign in').click
   end
 
+  def visit
+    Capybara::visit '#/sing_in'
+  end
+
 end
