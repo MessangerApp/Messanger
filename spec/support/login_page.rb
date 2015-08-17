@@ -8,7 +8,7 @@ class LoginPage
   end
 
   def visit
-    Capybara::visit '#/sing_in'
+    Capybara::visit '#/sign_in'
   end
 
 end

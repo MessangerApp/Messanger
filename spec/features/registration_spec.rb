@@ -5,18 +5,16 @@ feature 'Registration', js: true do
   let(:password) { Faker::Internet.password(8, 20) }
 
   before do
-    visit '#/sing_up'
-    fill_in 'Email', with: email
-    fill_in 'Password', with: password
-    fill_in 'Password confirmation', with: password
-    click_button 'Register'
+    reg_page = RegistrationPage.new
+    reg_page.visit
+    reg_page.complete_form(email, password)
   end
 
-  scenario 'waccount creation' do
+  scenario 'account creation' do
     find('a', text: 'Sign out').click
     login_page = LoginPage.new
     login_page.visit
-    login_page.sign_in(user.email, user.password)
+    login_page.sign_in(email, password)
     expect(page).to have_content('Sign out')
   end
 
