@@ -1,6 +1,7 @@
 'user strict'
 
 angular.module('messangerApp').controller('UserRegistrationsCtrl', ['$scope', '$auth', function($scope, $auth){
+  $scope.errors = [];
 
   $scope.handleRegBtnClick = function() {
     $auth.submitRegistration($scope.registrationForm)
@@ -13,9 +14,9 @@ angular.module('messangerApp').controller('UserRegistrationsCtrl', ['$scope', '$
   };
 
   $scope.$on('auth:registration-email-error', function(ev, reason){
-    $scope.errors = reason.errors
+     $scope.errors = reason.errors.full_messages
   });
   $scope.$on('auth:validation-error', function(ev, reason){
-    $scope.errors = reason.errors
+    $scope.errors = reason.errors.full_messages
   });
 }]);

@@ -1,4 +1,4 @@
-<div class="alert alert-danger" role="alert" ng-show="errors.length">
+<div class="alert alert-danger" role="alert" ng-hide="!errors.length">
   <ul>
     <li ng-repeat="error in errors">
       {{error}}
