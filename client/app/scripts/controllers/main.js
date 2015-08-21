@@ -14,10 +14,4 @@ angular.module('messangerApp')
       'AngularJS',
       'Karma'
     ];
-
-    var dispatcher = new WebSocketRails('localhost:3000/websocket');
-
-    $scope.hello = function () {
-      dispatcher.trigger('hello_act');
-    };
   });

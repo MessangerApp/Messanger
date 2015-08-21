@@ -23,13 +23,16 @@ var app = angular
   app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/conversations/index.html',
+        controller: 'ConversationsCtrl'
       })
       .when('/sign_up', {
         templateUrl: 'views/user_registrations/new.html',
         controller: 'UserRegistrationsCtrl',
+      })
+      .when('/conversations', {
+        templateUrl: 'views/conversations/index.html',
+        controller: 'ConversationsCtrl',
       })
       .when('/sign_in', {
         templateUrl: 'views/user_sessions/new.html',
@@ -49,4 +52,8 @@ var app = angular
   $rootScope.$on('auth:login-success', function() {
     $location.path('/');
   });
+}]);
+
+app.factory('Conversation', ['$resource', function($resource) {
+  return $resource('/api/conversations/:conversation_id');
 }]);
