@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816132327) do
+ActiveRecord::Schema.define(version: 20150821062503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "reply_to_id"
+    t.datetime "created_at",  null: false
+  end
+
+  add_index "messages", ["reply_to_id"], name: "index_messages_on_reply_to_id", using: :btree
+
+  create_table "user_conversations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.boolean  "muted"
+    t.boolean  "left"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "user_conversations", ["conversation_id"], name: "index_user_conversations_on_conversation_id", using: :btree
+  add_index "user_conversations", ["user_id"], name: "index_user_conversations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -45,4 +74,7 @@ ActiveRecord::Schema.define(version: 20150816132327) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "conversations", "users"
+  add_foreign_key "user_conversations", "conversations"
+  add_foreign_key "user_conversations", "users"
 end
