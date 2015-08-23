@@ -57,3 +57,6 @@ var app = angular
 app.factory('Conversation', ['$resource', function($resource) {
   return $resource('/api/conversations/:conversation_id');
 }]);
+
+window.client = new Faye.Client('/faye');
+console.log(client);

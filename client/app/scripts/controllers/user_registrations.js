@@ -1,4 +1,4 @@
-'user strict'
+"use strict" 
 
 angular.module('messangerApp').controller('UserRegistrationsCtrl', ['$scope', '$auth', function($scope, $auth){
   $scope.errors = [];
